@@ -1,0 +1,222 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Gonzalo Fit</title>
+<meta name="theme-color" content="#f4f7fb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Gonzalo Fit">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png"><link rel="manifest" href="manifest.json"><style>
+:root{--p:#0ea5a4;--bg:#f4f7fb;--t:#172033;--m:#667085;--l:#d9dee8;--ok:#027a48;--w:#b54708;--bad:#d92d20}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Arial,sans-serif;background:var(--bg);color:var(--t)}header,main{max-width:1100px;margin:auto;padding:18px}h1{margin:0}h2{margin-top:0}.sub,.hint{color:var(--m);font-size:14px;line-height:1.45}nav{display:flex;gap:8px;overflow:auto;position:sticky;top:0;background:#eef7f7;padding:10px 18px;z-index:5}nav button{border:1px solid var(--l);background:#fff;border-radius:999px;padding:10px 14px;font-weight:700}nav button.on{background:var(--p);color:#fff}.tab{display:none}.tab.on{display:block}.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}.card{background:#fff;border:1px solid var(--l);border-radius:18px;padding:18px;box-shadow:0 8px 20px #10182812}.c4{grid-column:span 4}.c5{grid-column:span 5}.c6{grid-column:span 6}.c7{grid-column:span 7}.c8{grid-column:span 8}.c12{grid-column:span 12}@media(max-width:850px){.c4,.c5,.c6,.c7,.c8{grid-column:span 12}}label{font-weight:700;font-size:13px;display:block;margin:10px 0 5px}input,select,textarea{width:100%;padding:10px;border:1px solid var(--l);border-radius:12px;font:inherit}textarea{min-height:80px}.row{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}.f3{grid-column:span 3}.f4{grid-column:span 4}.f6{grid-column:span 6}.f8{grid-column:span 8}.f12{grid-column:span 12}@media(max-width:700px){.f3,.f4,.f6,.f8{grid-column:span 12}}.btn{background:var(--p);color:#fff;border:0;border-radius:12px;padding:10px 13px;font-weight:800;margin:8px 5px 0 0}.btn.s{background:#fff;color:var(--t);border:1px solid var(--l)}.btn.d{background:var(--bad)}.list{display:flex;flex-direction:column;gap:10px;max-height:520px;overflow:auto}.item{border:1px solid var(--l);border-radius:14px;padding:12px;background:#fff}.meta{color:var(--m);font-size:13px;line-height:1.4}.badge{border-radius:999px;padding:4px 8px;background:#e9f8ef;color:var(--ok);font-size:12px;font-weight:800}.warn{background:#fff3e8;color:var(--w)}.bad{background:#fee4e2;color:var(--bad)}.macro{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.macro div{text-align:center;background:#f8fafc;border:1px solid var(--l);border-radius:12px;padding:10px}.macro b{display:block;font-size:20px}.photo{display:none;max-width:100%;max-height:330px;object-fit:contain;border:1px solid var(--l);border-radius:12px}.thumb{max-width:90px;max-height:160px;border-radius:10px;border:1px solid var(--l)}.guide{display:grid;grid-template-columns:110px 1fr;gap:12px;align-items:center;border:1px solid var(--l);border-radius:14px;padding:12px;margin:10px 0}.guide svg{width:100%;height:auto}.bar{height:12px;background:#edf2f7;border-radius:99px;overflow:hidden}.bar i{display:block;height:100%;background:var(--p)}canvas{width:100%;height:250px;border:1px solid var(--l);border-radius:12px;background:#fff}.plateResult{background:#f8fafc;border:1px solid var(--l);border-radius:14px;padding:12px;margin-top:10px;line-height:1.45}.plateResult b{color:var(--t)}.plateResult ul{margin:8px 0 0 18px;padding:0}.plateResult li{margin:4px 0}
+</style><link rel="stylesheet" href="ipad.css"></head><body><header><div class="brand-mark" aria-hidden="true">G</div><div><div class="eyebrow">TU ESPACIO DE BIENESTAR</div><h1>Gonzalo Fit</h1><div class="sub">Peso · comidas con macros · platos recomendados por objetivo · medidas · actividad Apple Watch manual</div></div><button class="btn s install-help" type="button" onclick="document.getElementById('installDialog').showModal()">Instalar en iPad</button></header><nav id="nav"></nav><main>
+<section id="panel" class="tab on"><div class="grid"><div class="card c4"><h2>Hoy</h2><div id="todayBox"></div></div><div class="card c8"><h2>Peso</h2><canvas id="chart" width="900" height="260"></canvas></div><div class="card c12"><h2>Últimas comidas</h2><div id="recentMeals" class="list"></div></div></div></section>
+<section id="peso" class="tab"><div class="grid"><div class="card c5"><h2>Registrar peso</h2><div class="row"><div class="f6"><label>Fecha</label><input id="wDate" type="date"></div><div class="f6"><label>Hora</label><input id="wTime" type="time"></div><div class="f6"><label>Peso kg</label><input id="wKg" type="number" step="0.01"></div><div class="f6"><label>IMC</label><input id="wBmi" type="number" step="0.1"></div><div class="f6"><label>Grasa %</label><input id="wFat" type="number" step="0.1"></div><div class="f6"><label>Músculo kg</label><input id="wMuscle" type="number" step="0.1"></div><div class="f6"><label>Agua %</label><input id="wWater" type="number" step="0.1"></div><div class="f6"><label>Visceral</label><input id="wVisceral" type="number" step="0.1"></div><div class="f6"><label>Masa ósea kg</label><input id="wBone" type="number" step="0.1"></div><div class="f6"><label>IMB kcal</label><input id="wBmr" type="number"></div><div class="f6"><label>Edad metabólica</label><input id="wAge" type="number"></div><div class="f12"><label>Captura Smart Life</label><input id="wImg" type="file" accept="image/*"><img id="prev" class="photo"></div><div class="f12"><label>Notas</label><textarea id="wNotes"></textarea></div></div><button class="btn" onclick="saveWeight()">Guardar peso</button></div><div class="card c7"><h2>Historial</h2><div id="weightList" class="list"></div></div></div></section>
+<section id="comidas" class="tab"><div class="grid"><div class="card c5"><h2>Calculadora de comida</h2><p class="hint">Valores aproximados por 100 g. Para productos concretos, manda la etiqueta y ajustamos la base.</p><div class="row"><div class="f6"><label>Fecha</label><input id="mDate" type="date"></div><div class="f6"><label>Tipo</label><select id="mType"><option>Desayuno</option><option>Almuerzo</option><option>Comida</option><option>Merienda</option><option>Cena</option><option>Cena libre viernes</option><option>Comida libre domingo</option><option>Extra</option></select></div><div class="f8"><label>Alimento</label><select id="food"></select></div><div class="f4"><label>Gramos</label><input id="grams" type="number" value="100"></div></div><button class="btn s" onclick="addFood()">Añadir</button><button class="btn s" onclick="draft=[];renderDraft()">Vaciar</button><div id="draftList" class="list"></div><div id="macros" class="macro"></div><label>Notas</label><textarea id="mealNotes"></textarea><button class="btn" onclick="saveMeal()">Guardar comida</button><h3>Plantillas</h3><button class="btn s" onclick="templateMeal('desayuno')">Desayuno fijo</button><button class="btn s" onclick="templateMeal('post')">Batido post</button><button class="btn s" onclick="templateMeal('kebab')">Cena kebab</button><button class="btn s" onclick="templateMeal('pizza')">Pizza viernes</button><h3>Alimento personalizado</h3><div class="row"><div class="f12"><input id="cName" placeholder="Nombre"></div><div class="f3"><input id="cKcal" placeholder="kcal" type="number"></div><div class="f3"><input id="cP" placeholder="prot" type="number" step="0.1"></div><div class="f3"><input id="cC" placeholder="HC" type="number" step="0.1"></div><div class="f3"><input id="cF" placeholder="grasa" type="number" step="0.1"></div></div><button class="btn s" onclick="addCustom()">Añadir alimento</button></div><div class="card c7"><h2>Diario de comidas</h2><div id="mealList" class="list"></div></div></div></section>
+<section id="medidas" class="tab"><div class="grid"><div class="card c5"><h2>Medidas semanales</h2><div class="row"><div class="f6"><label>Semana</label><input id="bWeek"></div><div class="f6"><label>Fecha</label><input id="bDate" type="date"></div><div class="f6"><label>Pecho cm</label><input id="bChest" type="number" step="0.1"></div><div class="f6"><label>Cintura cm</label><input id="bWaist" type="number" step="0.1"></div><div class="f6"><label>Cadera cm</label><input id="bHip" type="number" step="0.1"></div><div class="f6"><label>Muslo cm</label><input id="bThigh" type="number" step="0.1"></div><div class="f6"><label>Bíceps cm</label><input id="bBiceps" type="number" step="0.1"></div></div><button class="btn" onclick="saveMeasure()">Guardar medidas</button></div><div class="card c7"><h2>Historial</h2><div id="measureList" class="list"></div></div><div class="card c12"><h2>Cómo medirte</h2><div id="guides"></div></div></div></section>
+<section id="actividad" class="tab"><div class="grid"><div class="card c5"><h2>Actividad Apple Watch manual</h2><p class="hint">Copia aquí anillos/pasos hasta que exista app nativa con Salud.</p><div class="row"><div class="f6"><label>Fecha</label><input id="aDate" type="date"></div><div class="f6"><label>Día</label><select id="aType"><option>Descanso</option><option>Pierna</option><option>Espalda/Bíceps</option><option>Pecho/Hombro/Tríceps</option><option>Cardio</option><option>Bici 45 min</option></select></div><div class="f6"><label>Pasos</label><input id="aSteps" type="number"></div><div class="f6"><label>Calorías activas</label><input id="aActive" type="number"></div><div class="f6"><label>Ejercicio min</label><input id="aExercise" type="number"></div><div class="f6"><label>Horas de pie</label><input id="aStand" type="number"></div></div><button class="btn" onclick="saveActivity()">Guardar actividad</button></div><div class="card c7"><h2>Estado de objetivos</h2><div id="activityStatus"></div><h2>Historial</h2><div id="activityList" class="list"></div></div></div></section>
+<section id="config" class="tab"><div class="grid"><div class="card c6"><h2>Objetivos</h2><div class="row"><div class="f6"><label>Boda amiga</label><input id="ev1" type="date"></div><div class="f6"><label>Boda primo</label><input id="ev2" type="date"></div><div class="f6"><label>Pasos</label><input id="gSteps" type="number"></div><div class="f6"><label>Calorías activas</label><input id="gActive" type="number"></div><div class="f6"><label>Ejercicio min</label><input id="gExercise" type="number"></div><div class="f6"><label>Horas de pie</label><input id="gStand" type="number"></div></div><button class="btn" onclick="saveConfig()">Guardar objetivos</button></div><div class="card c6"><h2>Exportar / importar</h2><button class="btn s" onclick="exportJSON()">Exportar copia JSON</button><button class="btn s" onclick="exportCSV('weights')">CSV peso</button><button class="btn s" onclick="exportCSV('meals')">CSV comidas</button><button class="btn s" onclick="exportCSV('measures')">CSV medidas</button><button class="btn s" onclick="exportCSV('activity')">CSV actividad</button><label>Importar JSON</label><input type="file" id="jsonIn" accept=".json"><button class="btn s" onclick="importJSON()">Importar</button><button class="btn d" onclick="if(confirm('¿Borrar todo?')){localStorage.removeItem(KEY);location.reload()}">Borrar todo</button></div></div></section>
+</main><script>
+const KEY='gonzalo_fit_pro_v3';let navs=['panel','peso','comidas','medidas','actividad','config'];nav.innerHTML=navs.map((n,i)=>`<button class="${i?'':'on'}" onclick="go('${n}',this)">${n[0].toUpperCase()+n.slice(1)}</button>`).join('');function go(id,b){document.querySelectorAll('.tab').forEach(s=>s.classList.toggle('on',s.id==id));document.querySelectorAll('nav button').forEach(x=>x.classList.remove('on'));b&&b.classList.add('on');render()}
+const baseFoods=[['Leche desnatada Hacendado',34,3.4,4.8,0.2],['Pan integral',245,9,45,3.5],['Jamón serrano',240,31,0,13],['Pechuga pollo',110,23,0,1.5],['Pollo kebab Lidl aprox.',165,18,2,9],['Hamburguesa ternera 90%',190,20,1,12],['Pavo lonchas',105,20,2,2],['Atún natural',110,24,0,1],['Merluza',85,18,0,1],['Salmón',205,20,0,13],['Huevo entero',143,13,1,10],['Claras',50,11,0.7,0.2],['Yogur alto proteína',60,10,4,0.2],['Queso fresco batido 0%',46,8,3.5,0.2],['Proteína Herbalife polvo',386,53.6,25,8.2],['Arroz crudo',360,7,78,1],['Pasta cruda',350,12,72,1.5],['Patata cocida',80,2,17,0.1],['Boniato cocido',86,1.6,20,0.1],['Tortilla integral Mercadona',272,9.2,41,6],['Avena',370,13,60,7],['Plátano',89,1.1,23,0.3],['Manzana',52,0.3,14,0.2],['Cebolla',40,1.1,9,0.1],['Pimiento',31,1,6,0.3],['Calabacín',17,1.2,3,0.2],['Aceite oliva',900,0,0,100],['Base pizza',280,8,52,4],['Mozzarella light',170,24,2,8],['Tomate frito',80,1.5,10,4]];
+let def={cfg:{ev1:'2027-04-03',ev2:'2027-05-08',gSteps:10000,gActive:700,gExercise:45,gStand:12},weights:[],meals:[],measures:[],activity:[],foods:baseFoods.map((x,i)=>({id:'f'+i,name:x[0],kcal:x[1],p:x[2],c:x[3],f:x[4]}))};let db=JSON.parse(localStorage.getItem(KEY)||'null')||def;db={...def,...db,cfg:{...def.cfg,...(db.cfg||{})},foods:db.foods||def.foods};let draft=[],photo='';const $=id=>document.getElementById(id),N=v=>v===''||v==null?null:+String(v).replace(',','.'),D=()=>new Date().toISOString().slice(0,10),T=()=>new Date().toTimeString().slice(0,5),uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6),fd=s=>s?s.split('-').reverse().join('/'):'—',fmt=n=>n==null?'—':(+n).toFixed(1).replace('.',',');function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+function init(){['wDate','mDate','bDate','aDate'].forEach(id=>$(id).value=D());wTime.value=T();bWeek.value='Semana';Object.keys(db.cfg).forEach(k=>$(k)&&($(k).value=db.cfg[k]));refreshFood();guides.innerHTML=['Pecho: cinta horizontal por la parte más amplia.','Cintura: a la altura del ombligo o punto más estrecho, siempre igual.','Cadera: parte más ancha de glúteos/cadera.','Muslo: mitad entre cadera y rodilla.','Bíceps: brazo relajado o contraído, pero siempre igual.'].map((t,i)=>`<div class="guide">${svg(i)}<p>${t}</p></div>`).join('')}
+function refreshFood(){food.innerHTML=db.foods.map(f=>`<option value="${f.id}">${f.name} · ${f.kcal} kcal · P ${f.p}</option>`).join('')}wImg.onchange=e=>{let file=e.target.files[0];if(!file)return;let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{let c=document.createElement('canvas'),s=Math.min(1,900/im.width);c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);photo=c.toDataURL('image/jpeg',.72);prev.src=photo;prev.style.display='block'};im.src=r.result};r.readAsDataURL(file)};
+function saveWeight(){db.weights.unshift({id:uid(),date:wDate.value,time:wTime.value,kg:N(wKg.value),bmi:N(wBmi.value),fat:N(wFat.value),muscle:N(wMuscle.value),water:N(wWater.value),visceral:N(wVisceral.value),bone:N(wBone.value),bmr:N(wBmr.value),age:N(wAge.value),notes:wNotes.value,photo});photo='';prev.style.display='none';save()}
+function foodObj(id){return db.foods.find(f=>f.id==id)}function addFood(){let f=foodObj(food.value),g=N(grams.value)||0;if(!f||!g)return;let m=g/100;draft.push({id:uid(),name:f.name,g,kcal:f.kcal*m,p:f.p*m,c:f.c*m,f:f.f*m});renderDraft()}function totals(a){return a.reduce((s,x)=>({kcal:s.kcal+x.kcal,p:s.p+x.p,c:s.c+x.c,f:s.f+x.f}),{kcal:0,p:0,c:0,f:0})}function renderDraft(){draftList.innerHTML=draft.length?draft.map(x=>`<div class="item"><b>${x.name}</b> ${x.g}g<br><span class="meta">${Math.round(x.kcal)} kcal · P ${x.p.toFixed(1)} · HC ${x.c.toFixed(1)} · G ${x.f.toFixed(1)}</span> <button class="btn d" onclick="draft=draft.filter(i=>i.id!='${x.id}');renderDraft()">Quitar</button></div>`).join(''):'<div class="item meta">Añade alimentos.</div>';let t=totals(draft);macros.innerHTML=['kcal','proteína','hidratos','grasas'].map((l,i)=>`<div><b>${[Math.round(t.kcal),t.p.toFixed(1),t.c.toFixed(1),t.f.toFixed(1)][i]}</b><span>${l}</span></div>`).join('')}
+function saveMeal(){if(!draft.length)return alert('Añade alimentos');let t=totals(draft);db.meals.unshift({id:uid(),date:mDate.value,type:mType.value,items:draft,notes:mealNotes.value,kcal:t.kcal,p:t.p,c:t.c,f:t.f});draft=[];mealNotes.value='';save()}function F(name,g){let f=db.foods.find(x=>x.name.toLowerCase().includes(name));if(f){let m=g/100;draft.push({id:uid(),name:f.name,g,kcal:f.kcal*m,p:f.p*m,c:f.c*m,f:f.f*m})}}function templateMeal(t){draft=[];if(t=='desayuno'){mType.value='Desayuno';F('leche',250);F('pan',65);F('jamón',55)}if(t=='post'){mType.value='Almuerzo';F('herbalife',56)}if(t=='kebab'){mType.value='Cena';F('kebab',250);F('cebolla',120);F('pimiento',180)}if(t=='pizza'){mType.value='Cena libre viernes';F('base',200);F('tomate frito',60);F('mozzarella',80);F('pavo',80);F('pimiento',100)}renderDraft()}function addCustom(){db.foods.push({id:uid(),name:cName.value,kcal:N(cKcal.value)||0,p:N(cP.value)||0,c:N(cC.value)||0,f:N(cF.value)||0});cName.value=cKcal.value=cP.value=cC.value=cF.value='';refreshFood();save()}
+function saveMeasure(){db.measures.unshift({id:uid(),week:bWeek.value,date:bDate.value,chest:N(bChest.value),waist:N(bWaist.value),hip:N(bHip.value),thigh:N(bThigh.value),biceps:N(bBiceps.value)});save()}function saveActivity(){db.activity.unshift({id:uid(),date:aDate.value,type:aType.value,steps:N(aSteps.value),active:N(aActive.value),exercise:N(aExercise.value),stand:N(aStand.value)});save()}function saveConfig(){['ev1','ev2','gSteps','gActive','gExercise','gStand'].forEach(k=>db.cfg[k]=$(k).value);save()}
+function render(){let today=D(),w=db.weights[0],week=db.weights.slice(0,7).filter(x=>x.kg),avg=week.length?week.reduce((s,x)=>s+x.kg,0)/week.length:null,a=db.activity.find(x=>x.date==today),ev=[db.cfg.ev1,db.cfg.ev2].map(d=>({d,days:Math.ceil((new Date(d)-new Date())/86400000)})).filter(x=>x.days>=0).sort((a,b)=>a.days-b.days)[0];todayBox.innerHTML=`<p><b>Peso:</b> ${w?.kg??'—'} kg<br><b>Media 7 días:</b> ${avg?avg.toFixed(2):'—'} kg<br><b>Próxima boda:</b> ${ev?ev.days+' días':'—'}</p>`+activityAdvice(a);recentMeals.innerHTML=db.meals.slice(0,5).map(mealCard).join('')||'<div class="item meta">Sin comidas.</div>';weightList.innerHTML=db.weights.map(x=>`<div class="item"><b>${fd(x.date)} ${x.time} · ${x.kg} kg</b><div class="meta">IMC ${x.bmi??'—'} · grasa ${x.fat??'—'}% · músculo ${x.muscle??'—'} kg · agua ${x.water??'—'}% · visceral ${x.visceral??'—'}<br>${x.notes||''}<br>${x.photo?'<img class="thumb" src="'+x.photo+'">':''}</div></div>`).join('')||'<div class="item meta">Sin pesos.</div>';mealList.innerHTML=db.meals.map(mealCard).join('')||'<div class="item meta">Sin comidas.</div>';measureList.innerHTML=db.measures.map(x=>`<div class="item"><b>${x.week} · ${fd(x.date)}</b><div class="meta">Pecho ${fmt(x.chest)} · Cintura ${fmt(x.waist)} · Cadera ${fmt(x.hip)} · Muslo ${fmt(x.thigh)} · Bíceps ${fmt(x.biceps)} cm</div></div>`).join('')||'<div class="item meta">Sin medidas.</div>';activityList.innerHTML=db.activity.map(x=>`<div class="item"><b>${fd(x.date)} · ${x.type}</b><div class="meta">Pasos ${x.steps??'—'} · activas ${x.active??'—'} · ejercicio ${x.exercise??'—'} · de pie ${x.stand??'—'}</div></div>`).join('')||'<div class="item meta">Sin actividad.</div>';activityStatus.innerHTML=activityAdvice(a,true);drawChart();renderDraft()}function mealCard(m){return `<div class="item"><b>${fd(m.date)} · ${m.type}</b><div class="meta">${m.items.map(i=>i.name+' '+i.g+'g').join(', ')}<br>${Math.round(m.kcal)} kcal · P ${m.p.toFixed(1)}g · HC ${m.c.toFixed(1)}g · G ${m.f.toFixed(1)}g</div></div>`}function activityAdvice(a,full=false){if(!a)return '<div class="item meta">Aún no has apuntado actividad hoy.</div>';let gs=+db.cfg.gSteps,ga=+db.cfg.gActive,ge=+db.cfg.gExercise,st=+db.cfg.gStand,ms=Math.max(0,gs-(a.steps||0)),ma=Math.max(0,ga-(a.active||0));let msg=ms||ma?`Te faltan ${ms} pasos y ${ma} kcal activas. Haz 20-30 min de paseo/bici suave si puedes.`:'Vas bien hoy. Mantén la cena de dieta y descansa.';if(!full)return `<p><b>Actividad:</b> ${msg}</p>`;return [['Pasos',a.steps,gs],['Activas',a.active,ga],['Ejercicio',a.exercise,ge],['De pie',a.stand,st]].map(r=>{let p=Math.min(100,(r[1]||0)/r[2]*100);return `<div class="item"><b>${r[0]}:</b> ${r[1]||0}/${r[2]}<div class="bar"><i style="width:${p}%"></i></div></div>`}).join('')+`<p>${msg}</p>`}function drawChart(){let c=chart.getContext('2d'),arr=[...db.weights].reverse().filter(x=>x.kg);c.clearRect(0,0,900,260);c.fillStyle='#fff';c.fillRect(0,0,900,260);if(arr.length<2){c.fillStyle='#667085';c.fillText('Añade al menos 2 pesos para ver gráfica',50,130);return}let min=Math.min(...arr.map(x=>x.kg))-1,max=Math.max(...arr.map(x=>x.kg))+1,px=i=>50+i*820/(arr.length-1),py=v=>30+(max-v)*190/(max-min);c.strokeStyle='#0ea5a4';c.lineWidth=3;c.beginPath();arr.forEach((d,i)=>i?c.lineTo(px(i),py(d.kg)):c.moveTo(px(i),py(d.kg)));c.stroke()}function svg(i){let y=[42,58,74,95,46][i];let extra=i==4?'<line x1="16" y1="46" x2="36" y2="46"/>':`<line x1="25" y1="${y}" x2="75" y2="${y}"/>`;return `<svg viewBox="0 0 100 130"><circle cx="50" cy="15" r="10" fill="#ccd6e0"/><path d="M38 30 Q50 25 62 30 L68 76 Q60 86 55 121 H45 Q40 86 32 76 Z" fill="#dff3f3" stroke="#0ea5a4"/><path d="M37 33 L20 60 M63 33 L80 60" stroke="#0ea5a4" stroke-width="6" stroke-linecap="round"/><path d="M45 78 L42 121 M55 78 L58 121" stroke="#0ea5a4" stroke-width="7" stroke-linecap="round"/><g stroke="#ef4444" stroke-width="4" stroke-linecap="round">${extra}</g></svg>`}
+function exportJSON(){download(new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),'gonzalo_fit_tracker_copia.json')}function exportCSV(t){let rows=[['tipo','datos']];if(t=='weights')rows=[['fecha','peso','imc','grasa','musculo'],...db.weights.map(x=>[x.date,x.kg,x.bmi,x.fat,x.muscle])];if(t=='meals')rows=[['fecha','tipo','kcal','proteina','hidratos','grasas','items'],...db.meals.map(x=>[x.date,x.type,Math.round(x.kcal),x.p.toFixed(1),x.c.toFixed(1),x.f.toFixed(1),x.items.map(i=>i.name+' '+i.g+'g').join('|')])];if(t=='measures')rows=[['fecha','pecho','cintura','cadera','muslo','biceps'],...db.measures.map(x=>[x.date,x.chest,x.waist,x.hip,x.thigh,x.biceps])];if(t=='activity')rows=[['fecha','tipo','pasos','activas','ejercicio','de_pie'],...db.activity.map(x=>[x.date,x.type,x.steps,x.active,x.exercise,x.stand])];download(new Blob([rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\n')],{type:'text/csv'}),t+'.csv')}function download(b,n){let a=document.createElement('a'),u=URL.createObjectURL(b);a.href=u;a.download=n;a.click();URL.revokeObjectURL(u)}function importJSON(){let f=jsonIn.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{db=JSON.parse(r.result);save();location.reload()};r.readAsText(f)}
+function ensureFoodV4(name,kcal,p,c,f){
+  if(!db.foods.some(x=>x.name.toLowerCase()===name.toLowerCase())){
+    db.foods.push({id:uid(),name,kcal,p,c,f});
+  }
+}
+function installPlateBuilderV4(){
+  const comidas=document.querySelector('#comidas .grid');
+  if(!comidas || document.getElementById('plateBuilderV4')) return;
+
+  ensureFoodV4('Lechuga',15,1.4,2.9,0.2);
+  ensureFoodV4('Pepino',15,0.7,3.6,0.1);
+  ensureFoodV4('Brócoli',34,2.8,7,0.4);
+  ensureFoodV4('Setas',22,3.1,3.3,0.3);
+  ensureFoodV4('Pavo pechuga',110,23,0,1.5);
+  ensureFoodV4('Tomate natural',18,0.9,3.9,0.2);
+  refreshFood();
+
+  const card=document.createElement('div');
+  card.className='card c12';
+  card.id='plateBuilderV4';
+  card.innerHTML=`
+    <h2>Constructor de plato de dieta</h2>
+    <p class="hint">
+      Elige proteína, guarnición y carbohidrato. La app te dice los gramos recomendados según si entrenas o descansas.
+      Está pensado para perder grasa: proteína alta, verduras abundantes y carbohidratos ajustados al entrenamiento.
+    </p>
+    <div class="row">
+      <div class="f3">
+        <label>Tipo de día</label>
+        <select id="pbDay">
+          <option value="training">Día de entrenamiento</option>
+          <option value="rest">Día de descanso</option>
+        </select>
+      </div>
+      <div class="f3">
+        <label>Comida</label>
+        <select id="pbMeal">
+          <option value="lunch">Comida</option>
+          <option value="dinner">Cena</option>
+        </select>
+      </div>
+      <div class="f3">
+        <label>Proteína</label>
+        <select id="pbProtein">
+          <option value="pollo">Pechuga de pollo</option>
+          <option value="pavo">Pavo / pechuga de pavo</option>
+          <option value="kebab">Pollo kebab Lidl</option>
+          <option value="hamburguesa">Hamburguesa ternera 90%</option>
+          <option value="merluza">Merluza / pescado blanco</option>
+          <option value="atun">Atún natural</option>
+          <option value="salmon">Salmón</option>
+          <option value="huevos">Huevos + claras</option>
+        </select>
+      </div>
+      <div class="f3">
+        <label>Guarnición / verdura</label>
+        <select id="pbVeg">
+          <option value="cebolla_calabacin">Cebolla + calabacín</option>
+          <option value="cebolla_pimiento">Cebolla + pimiento</option>
+          <option value="calabacin_pimiento">Calabacín + pimiento</option>
+          <option value="ensalada">Ensalada grande</option>
+          <option value="brocoli_setas">Brócoli + setas</option>
+        </select>
+      </div>
+      <div class="f3">
+        <label>Carbohidrato</label>
+        <select id="pbCarb">
+          <option value="patata">Patata cocida</option>
+          <option value="boniato">Boniato cocido</option>
+          <option value="arroz">Arroz crudo</option>
+          <option value="pasta">Pasta cruda</option>
+          <option value="tortillas">2 tortillas integrales Mercadona</option>
+          <option value="none">Sin carbohidrato</option>
+        </select>
+      </div>
+      <div class="f3">
+        <label>Aceite de oliva</label>
+        <select id="pbOil">
+          <option value="5">5 g</option>
+          <option value="0">0 g</option>
+          <option value="10">10 g</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn s" onclick="calculatePlateV4()">Calcular gramos</button>
+    <button class="btn" onclick="addPlateToDraftV4(true)">Reemplazar borrador por este plato</button>
+    <button class="btn s" onclick="addPlateToDraftV4(false)">Añadir al borrador actual</button>
+    <div id="plateResultV4" class="plateResult">Elige tus opciones y pulsa “Calcular gramos”.</div>
+  `;
+  comidas.prepend(card);
+}
+function plateItemsV4(){
+  const day=pbDay.value, meal=pbMeal.value, protein=pbProtein.value, veg=pbVeg.value, carb=pbCarb.value;
+  const training=day==='training';
+  const dinner=meal==='dinner';
+  let items=[], notes=[];
+
+  const proteinGrams = {
+    pollo: training?230:220,
+    pavo: training?230:220,
+    kebab: training?250:220,
+    hamburguesa: training?220:200,
+    merluza: training?260:240,
+    atun: 160,
+    salmon: training?180:160
+  };
+  if(protein==='pollo') items.push(['Pechuga pollo', proteinGrams.pollo]);
+  if(protein==='pavo') items.push(['Pavo pechuga', proteinGrams.pavo]);
+  if(protein==='kebab') items.push(['Pollo kebab Lidl aprox.', proteinGrams.kebab]);
+  if(protein==='hamburguesa') items.push(['Hamburguesa ternera 90%', proteinGrams.hamburguesa]);
+  if(protein==='merluza') items.push(['Merluza', proteinGrams.merluza]);
+  if(protein==='atun') items.push(['Atún natural', proteinGrams.atun]);
+  if(protein==='salmon') items.push(['Salmón', proteinGrams.salmon]);
+  if(protein==='huevos'){
+    items.push(['Huevo entero', 100]);
+    items.push(['Claras', 200]);
+    notes.push('Huevos: usa 2 huevos enteros aprox. + 200 g de claras.');
+  }
+
+  if(veg==='cebolla_calabacin'){ items.push(['Cebolla',120],['Calabacín',250]); }
+  if(veg==='cebolla_pimiento'){ items.push(['Cebolla',120],['Pimiento',180]); }
+  if(veg==='calabacin_pimiento'){ items.push(['Calabacín',250],['Pimiento',150]); }
+  if(veg==='ensalada'){ items.push(['Lechuga',120],['Tomate natural',150],['Pepino',100]); }
+  if(veg==='brocoli_setas'){ items.push(['Brócoli',250],['Setas',200]); }
+
+  let carbGrams=0;
+  if(carb!=='none'){
+    if(carb==='tortillas') notes.push('2 tortillas integrales Mercadona equivalen a unos 72 g. Úsalas sobre todo en comidas/cenas de entrenamiento o cuando quieras hacer fajitas/wraps controlados.');
+    if(training && !dinner){
+      carbGrams = (carb==='arroz'||carb==='pasta') ? 60 : 250;
+    }else if(training && dinner){
+      carbGrams = (carb==='arroz'||carb==='pasta') ? 40 : 180;
+    }else if(!training && !dinner){
+      carbGrams = (carb==='arroz'||carb==='pasta') ? 40 : 150;
+    }else{
+      carbGrams = (carb==='arroz'||carb==='pasta') ? 25 : 100;
+      notes.push('En cena de descanso, el carbohidrato es opcional. Si no tienes hambre, elige “sin carbohidrato”.');
+    }
+    if(carb==='patata') items.push(['Patata cocida', carbGrams]);
+    if(carb==='boniato') items.push(['Boniato cocido', carbGrams]);
+    if(carb==='arroz') items.push(['Arroz crudo', carbGrams]);
+    if(carb==='pasta') items.push(['Pasta cruda', carbGrams]);
+    if(carb==='tortillas') items.push(['Tortilla integral Mercadona', 72]);
+  }else{
+    if(training) notes.push('Si entrenas fuerte y notas poca energía, añade patata/boniato o arroz en la comida previa o posterior.');
+  }
+
+  const oil=Number(pbOil.value||0);
+  if(oil>0) items.push(['Aceite oliva', oil]);
+  if(oil===10) notes.push('10 g de aceite encajan mejor en comida; para cena de descanso, mejor 0-5 g.');
+
+  return {items,notes,day,meal};
+}
+function foodForNameV4(name){
+  const exact=db.foods.find(f=>f.name.toLowerCase()===name.toLowerCase());
+  if(exact) return exact;
+  return db.foods.find(f=>f.name.toLowerCase().includes(name.toLowerCase())) || null;
+}
+function totalsForItemsV4(items){
+  return items.reduce((s,it)=>{
+    const f=foodForNameV4(it[0]), g=it[1];
+    if(!f) return s;
+    const m=g/100;
+    return {kcal:s.kcal+f.kcal*m,p:s.p+f.p*m,c:s.c+f.c*m,f:s.f+f.f*m};
+  },{kcal:0,p:0,c:0,f:0});
+}
+function calculatePlateV4(){
+  const p=plateItemsV4(), t=totalsForItemsV4(p.items);
+  const dayTxt=p.day==='training'?'día de entrenamiento':'día de descanso';
+  const mealTxt=p.meal==='lunch'?'comida':'cena';
+  const lis=p.items.map(x=>`<li><b>${x[0]}:</b> ${x[1]} g</li>`).join('');
+  const notes=p.notes.length?`<p class="hint"><b>Notas:</b> ${p.notes.join(' ')}</p>`:'';
+  plateResultV4.innerHTML=`
+    <b>Plato recomendado para ${mealTxt} en ${dayTxt}:</b>
+    <ul>${lis}</ul>
+    <p><b>Total aproximado:</b> ${Math.round(t.kcal)} kcal · proteína ${t.p.toFixed(1)} g · hidratos ${t.c.toFixed(1)} g · grasas ${t.f.toFixed(1)} g.</p>
+    ${notes}
+    <p class="hint">Para perder grasa, si un día tienes más hambre, sube verduras. Si necesitas recortar, baja primero aceite/salsas y luego carbohidrato, no proteína.</p>
+  `;
+}
+function addPlateToDraftV4(replace){
+  const p=plateItemsV4();
+  if(replace) draft=[];
+  p.items.forEach(x=>{
+    const f=foodForNameV4(x[0]);
+    if(!f) return;
+    const g=x[1], m=g/100;
+    draft.push({id:uid(),name:f.name,g,kcal:f.kcal*m,p:f.p*m,c:f.c*m,f:f.f*m});
+  });
+  renderDraft();
+  calculatePlateV4();
+}
+
+init();installPlateBuilderV4();render();
+</script><dialog id="installDialog" aria-labelledby="installTitle"><h2 id="installTitle">Tu dieta, como una app</h2><p>Abre esta web en Safari en tu iPad.</p><ol><li>Pulsa <b>Compartir</b> (cuadrado con flecha hacia arriba).</li><li>Elige <b>Añadir a pantalla de inicio</b>. Puede aparecer dentro de Más.</li><li>Si aparece, activa <b>Abrir como app web</b> y pulsa Añadir.</li><li>Abre <b>Gonzalo Fit</b> desde su nuevo icono.</li></ol><p>Así se abre sin la barra de direcciones ni las pestañas de Safari.</p><p class="hint">Antes de instalar, exporta tu copia JSON en Ajustes. Si tus registros no aparecen en la app, impórtala allí. Los datos se guardan en este dispositivo; no se sincronizan entre dispositivos.</p><form method="dialog"><button class="btn">Entendido</button></form></dialog><script src="ipad.js"></script><script src="records.js"></script></body></html>
