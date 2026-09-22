@@ -1,0 +1,36 @@
+GONZALO FIT · ADAPTACIÓN IPAD
+
+1. En la web actual, ve a Config > Exportar copia JSON y guarda la copia.
+2. Descomprime este ZIP. Sube index.html, ipad.css, ipad.js, manifest.json,
+   sw.js y la carpeta icons a la carpeta que Vercel publica en tu repositorio.
+   Sustituye el index.html anterior. Los archivos deben quedar juntos, sin una
+   carpeta adicional alrededor. Si tu entrada HTML tiene otro nombre, puedes
+   conservar esa ruta con una copia del nuevo index.html.
+   Este paquete es una web estática: no necesita npm ni compilación.
+   Si el proyecto ya tiene un framework, habrá que integrar estos archivos
+   en su estructura; no sustituir a ciegas su configuración.
+3. Espera a que termine el despliegue de Vercel y abre tu dominio habitual
+   en Safari en el iPad. No cambies de dominio si quieres conservar los datos
+   del navegador; se mantiene la misma clave localStorage de la versión previa.
+4. Compartir > Añadir a pantalla de inicio (puede estar dentro de Más).
+   Activa Abrir como app web si aparece y pulsa Añadir.
+5. Abre Gonzalo Fit desde el icono. Ya no verás la barra ni las pestañas de
+   Safari. El estado y los gestos del sistema siguen dependiendo de iPadOS.
+6. Si no aparecen tus datos, entra en Ajustes e importa tu copia JSON.
+   No hay sincronización automática con otros dispositivos.
+
+FUNCIONES
+Navegación lateral en iPad; barra inferior en ventanas estrechas o Split View.
+Vertical y horizontal, áreas seguras y controles táctiles accesibles.
+Conserva calculadora, tortillas, platos, comidas, pesos, medidas y actividad.
+Caché sin conexión tras una primera carga completa con conexión. Ábrela de
+nuevo para que la caché controle la app antes de depender del modo sin red.
+La app no conecta con Salud ni Apple Watch; la actividad sigue siendo manual.
+
+ACTUALIZACIONES
+Si cambias index.html, ipad.css, ipad.js u otros recursos, cambia también el
+valor CACHE en sw.js (por ejemplo, v1 a v2). Cierra todas las ventanas de la
+app y vuelve a abrirla para activar la actualización descargada. No borres
+los datos de Safari o la app para actualizar; exporta copias periódicamente.
+
+No se ha modificado tu repositorio ni se ha desplegado en Vercel desde aquí.
